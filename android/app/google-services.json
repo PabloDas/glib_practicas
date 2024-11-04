@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "482325413457",
+    "project_id": "glib-6bb62",
+    "storage_bucket": "glib-6bb62.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:482325413457:android:0fdb3e291c5f8c09f14270",
+        "android_client_info": {
+          "package_name": "com.practicas.glib"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJqzHvZoxy6h_uZvn173RDxcxvZVri9Qk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
