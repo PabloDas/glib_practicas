@@ -70,7 +70,7 @@ class HomePage extends StatelessWidget {
               child: const Text('ABM Rubros'),
             ),
             const SizedBox(height: 20),
-                        ElevatedButton(
+            ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, RouteNames.ciudad.name);
               },
@@ -101,6 +101,14 @@ class HomePage extends StatelessWidget {
                 );
               },
               child: const Text('Solicitar reparación'),
+            ),
+            const SizedBox(height: 20),
+            // Botón para navegar a la página de ABM de formularios técnicos
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, RouteNames.products.name);
+              },
+              child: const Text('ABM Formulario Tecnicos'),
             ),
           ],
         ),

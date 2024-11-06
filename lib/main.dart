@@ -27,6 +27,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => SucursalProvider()),
         ChangeNotifierProvider(create: (_) => RubroProvider()),
         ChangeNotifierProvider(create: (_) => CiudadProvider())
+        
       ],
       child: const App(),
     ),

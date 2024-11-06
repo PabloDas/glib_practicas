@@ -36,10 +36,10 @@ final Map<String, Widget Function(BuildContext)> appRoutes = {
   RouteNames.login.name: (context) => const AuthPage(),
   RouteNames.home.name: (context) => HomePage(),
   RouteNames.search.name: (context) => SearchPage(),
-  RouteNames.products.name: (context) => ProductsScreen(),
-  RouteNames.sucursal.name: (context) => SucursalesScreen(),
-  RouteNames.rubros.name: (context) => RubrosScreen(),
-  RouteNames.ciudad.name: (context) => CiudadesScreen(),
+  RouteNames.products.name: (context) => const ProductsScreen(),
+  RouteNames.sucursal.name: (context) => const SucursalesScreen(),
+  RouteNames.rubros.name: (context) => const RubrosScreen(),
+  RouteNames.ciudad.name: (context) => const CiudadesScreen(),
 
   // Nueva ruta para la pantalla de empresas
   RouteNames.addEmpresa.name: (context) => AddEmpresaPage(),
