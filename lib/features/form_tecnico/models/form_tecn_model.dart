@@ -1,37 +1,51 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class FormTecn {
   final String id;
-  final String nombre;
-  final String numeroSerie;
-  final String descripcion;
-  final String fotoUrl;
+  final String nameForm;
+  final String numForm;
+  final String nameTecnico;
+  final String numCliente;
+  final String status;
+  final Timestamp createdAt;
+  //final String fotoUrl;
 
   FormTecn({
     required this.id,
-    required this.nombre,
-    required this.numeroSerie,
-    required this.descripcion,
-    required this.fotoUrl,
+    required this.nameForm,
+    required this.numForm,
+    required this.nameTecnico,
+    required this.numCliente,
+    required this.status,
+    required this.createdAt,
+    //required this.fotoUrl,
   });
 
-  // Crear un producto desde un Map (Firestore)
+  // Crear un formulario desde un Map (Firestore)
   factory FormTecn.fromMap(Map<String, dynamic> map) {
     return FormTecn(
       id: map['id'] ?? '',  // Asegurar que el ID no sea null
-      nombre: map['nombre'] ?? '',
-      numeroSerie: map['numeroSerie'] ?? '',
-      descripcion: map['descripcion'] ?? '',
-      fotoUrl: map['fotoUrl'] ?? '',
+      nameForm: map['nameForm'] ?? '',
+      numForm: map['numForm'] ?? '',
+      nameTecnico: map['nameTecnico'] ?? '',
+      numCliente: map['numCliente'] ?? '',
+      status: map['status'] ?? '',
+      createdAt: map['createdAt'] ?? '',
+      //fotoUrl: map['fotoUrl'] ?? '',
     );
   }
 
-  // Convertir un producto a un Map para Firestore
+  // Convertir un formulario a un Map para Firestore
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'nombre': nombre,
-      'numeroSerie': numeroSerie,
-      'descripcion': descripcion,
-      'fotoUrl': fotoUrl,
+      'nameForm': nameForm,
+      'numForm': numForm,
+      'nameTecnico': nameTecnico,
+      'numCliente': numCliente,
+      'status': status,
+      'createdAt': createdAt,
+      //'fotoUrl': fotoUrl,
     };
   }
 }

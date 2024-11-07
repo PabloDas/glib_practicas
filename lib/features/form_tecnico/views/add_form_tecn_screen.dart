@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/form_tecn_model.dart';
@@ -8,10 +9,13 @@ class AddFormTecnScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final nombreController = TextEditingController();
-    final numeroSerieController = TextEditingController();
-    final descripcionController = TextEditingController();
-    final fotoUrlController = TextEditingController();
+    final nameFormController = TextEditingController();
+    final numFormController = TextEditingController();
+    final nameTecnicoController = TextEditingController();
+    final numClienteController = TextEditingController();
+    final statusController = TextEditingController();
+    final createdAtController = TextEditingController();
+    //final fotoUrlController = TextEditingController();
 
     return Scaffold(
       appBar: AppBar(
@@ -22,30 +26,46 @@ class AddFormTecnScreen extends StatelessWidget {
         child: Column(
           children: [
             TextField(
-              controller: nombreController,
-              decoration: const InputDecoration(labelText: 'Nombre'),
+              controller: nameFormController,
+              decoration: const InputDecoration(labelText: 'Nombre de Formulario'),
             ),
             TextField(
-              controller: numeroSerieController,
-              decoration: const InputDecoration(labelText: 'Número de Serie'),
+              controller: numFormController,
+              decoration: const InputDecoration(labelText: 'Número de Formulario'),
             ),
             TextField(
-              controller: descripcionController,
-              decoration: const InputDecoration(labelText: 'Descripción'),
+              controller: nameTecnicoController,
+              decoration: const InputDecoration(labelText: 'Nombre del Técnico'),
             ),
             TextField(
-              controller: fotoUrlController,
-              decoration: const InputDecoration(labelText: 'Foto URL'),
+              controller: numClienteController,
+              decoration: const InputDecoration(labelText: 'Numero de Cliente'),
             ),
+            TextField(
+              controller: statusController,
+              decoration: const InputDecoration(labelText: 'Estado'),
+            ),
+            TextField(
+              controller: createdAtController,
+              decoration: const InputDecoration(labelText: 'Fecha de Creación'),
+            ),
+           // TextField(
+           //   controller: fotoUrlController,
+           //   decoration: const InputDecoration(labelText: 'Foto URL'),
+           // ),
+
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 final newFormTecn = FormTecn(
                   id: DateTime.now().toString(),
-                  nombre: nombreController.text,
-                  numeroSerie: numeroSerieController.text,
-                  descripcion: descripcionController.text,
-                  fotoUrl: fotoUrlController.text,
+                  nameForm: nameFormController.text,
+                  numForm: numFormController.text,
+                  nameTecnico: nameTecnicoController.text,
+                  numCliente: numClienteController.text,
+                  status: statusController.text,
+                  createdAt: Timestamp.fromDate(DateTime.now()),
+                  //fotoUrl: fotoUrlController.text,
                 );
 
                 Provider.of<FormTecnProvider>(context, listen: false)

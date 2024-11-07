@@ -1,7 +1,6 @@
 // empresas_screen.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../models/empresa.model.dart';
 import '../providers/empresa.provider.dart';
 import 'edit_empresa_page.dart';
 

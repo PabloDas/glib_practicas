@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:glib_practicas/features/ciudades/providers/ciudad.provider.dart';
 import 'package:glib_practicas/features/empresas/providers/empresa.provider.dart';
 import 'package:glib_practicas/features/empresas_sucursales/providers/sucursal.provider.dart';
+import 'package:glib_practicas/features/form_tecnico/providers/form_tecn_provider.dart';
 import 'package:glib_practicas/features/rubros/providers/rubro.provider.dart';
 import 'package:provider/provider.dart';
 import 'package:glib_practicas/app.dart';
@@ -26,8 +27,8 @@ void main() {
         ChangeNotifierProvider(create: (_) => EmpresaProvider()),
         ChangeNotifierProvider(create: (_) => SucursalProvider()),
         ChangeNotifierProvider(create: (_) => RubroProvider()),
-        ChangeNotifierProvider(create: (_) => CiudadProvider())
-        
+        ChangeNotifierProvider(create: (_) => CiudadProvider()),
+        ChangeNotifierProvider(create: (_) => FormTecnProvider())
       ],
       child: const App(),
     ),

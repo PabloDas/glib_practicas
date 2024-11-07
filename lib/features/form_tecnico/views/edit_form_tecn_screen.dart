@@ -1,12 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/form_tecn_model.dart';
 import '../providers/form_tecn_provider.dart';
 
 class EditFormTecnScreen extends StatefulWidget {
-  final FormTecn product;
+  final FormTecn formTecn;
 
-  const EditFormTecnScreen({Key? key, required this.product}) : super(key: key);
+  const EditFormTecnScreen({super.key, required this.formTecn});
 
   @override
   _EditFormTecnScreenState createState() => _EditFormTecnScreenState();
@@ -14,18 +15,24 @@ class EditFormTecnScreen extends StatefulWidget {
 
 class _EditFormTecnScreenState extends State<EditFormTecnScreen> {
   final _formKey = GlobalKey<FormState>();
-  late String _nombre;
-  late String _numeroSerie;
-  late String _descripcion;
-  late String _fotoUrl;
+  late String _nameForm;
+  late String _numForm;
+  late String _nameTecnico;
+  late String _numCliente;
+  late String _status;
+  late Timestamp _createdAt;
+  //late String _fotoUrl;
 
   @override
   void initState() {
     super.initState();
-    _nombre = widget.product.nombre;
-    _numeroSerie = widget.product.numeroSerie;
-    _descripcion = widget.product.descripcion;
-    _fotoUrl = widget.product.fotoUrl;
+    _nameForm = widget.formTecn.nameForm;
+    _numForm = widget.formTecn.numForm;
+    _nameTecnico = widget.formTecn.nameTecnico;
+    _numCliente = widget.formTecn.numCliente;
+    _status = widget.formTecn.status;
+    _createdAt = widget.formTecn.createdAt;
+    //_fotoUrl = widget.product.fotoUrl;
   }
 
   @override
@@ -43,36 +50,54 @@ class _EditFormTecnScreenState extends State<EditFormTecnScreen> {
           child: Column(
             children: [
               TextFormField(
-                initialValue: _nombre,
-                decoration: const InputDecoration(labelText: 'Nombre'),
-                onSaved: (value) => _nombre = value!,
+                initialValue: _nameForm,
+                decoration: const InputDecoration(labelText: 'Nombre del Formulario'),
+                onSaved: (value) => _nameForm = value!,
               ),
               TextFormField(
-                initialValue: _numeroSerie,
+                initialValue: _numForm,
                 decoration: const InputDecoration(labelText: 'Número de Serie'),
-                onSaved: (value) => _numeroSerie = value!,
+                onSaved: (value) => _numForm = value!,
               ),
               TextFormField(
-                initialValue: _descripcion,
-                decoration: const InputDecoration(labelText: 'Descripción'),
-                onSaved: (value) => _descripcion = value!,
+                initialValue: _nameTecnico,
+                decoration: const InputDecoration(labelText: 'Nombre del Técnico'),
+                onSaved: (value) => _nameTecnico = value!,
               ),
               TextFormField(
-                initialValue: _fotoUrl,
-                decoration: const InputDecoration(labelText: 'Foto URL'),
-                onSaved: (value) => _fotoUrl = value!,
+                initialValue: _numCliente,
+                decoration: const InputDecoration(labelText: 'Numero de Cliente'),
+                onSaved: (value) => _numCliente = value!,
               ),
+              TextFormField(
+                initialValue: _status,
+                decoration: const InputDecoration(labelText: 'Estado'),
+                onSaved: (value) => _status = value!,
+              ),
+              TextFormField(
+                initialValue: _createdAt.toDate().toString(),
+                decoration: const InputDecoration(labelText: 'Fecha de Creación'),
+                onSaved: (value) => _createdAt = Timestamp.fromDate(DateTime.parse(value!)),
+              ),
+              // TextFormField(
+              //   initialValue: _fotoUrl,
+              //   decoration: const InputDecoration(labelText: 'Foto URL'),
+              //   onSaved: (value) => _fotoUrl = value!,
+              // ),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
                     final updatedFormTecn = FormTecn(
-                      id: widget.product.id,
-                      nombre: _nombre,
-                      numeroSerie: _numeroSerie,
-                      descripcion: _descripcion,
-                      fotoUrl: _fotoUrl,
+                      id: widget.formTecn.id,
+                      nameForm: _nameForm,
+                      numForm: _numForm,
+                      nameTecnico: _nameTecnico,
+                      numCliente: _numCliente,
+                      status: _status,
+                      createdAt: _createdAt,
+                      //fotoUrl: _fotoUrl,
                     );
                     formTecnProvider.updateFormTecn(updatedFormTecn);
                     Navigator.of(context).pop();

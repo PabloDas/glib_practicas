@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/sucursal.model.dart';
 
@@ -7,16 +8,16 @@ class SucursalService {
   // Obtener todas las sucursales desde Firebase Firestore.
   Future<List<Sucursal>> getSucursales() async {
     try {
-      print("Obteniendo sucursales desde Firestore...");
+      debugPrint("Obteniendo sucursales desde Firestore...");
       QuerySnapshot snapshot = await _firestore.collection('sucursales').get();
-      print("Número de documentos obtenidos: ${snapshot.docs.length}");
+      debugPrint("Número de documentos obtenidos: ${snapshot.docs.length}");
 
       return snapshot.docs.map((doc) {
-        print("Documento obtenido: ${doc.data()}");
+        debugPrint("Documento obtenido: ${doc.data()}");
         return Sucursal.fromMap(doc.data() as Map<String, dynamic>);
       }).toList();
     } catch (e) {
-      print("Error al obtener sucursales: $e");
+      debugPrint("Error al obtener sucursales: $e");
       throw Exception('Error al obtener sucursales: $e');
     }
   }

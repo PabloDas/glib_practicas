@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:glib_practicas/features/form_tecnico/providers/form_tecn_provider.dart';
 import 'package:provider/provider.dart';
+import '../providers/form_tecn_provider.dart';
 import 'add_form_tecn_screen.dart';
 import 'edit_form_tecn_screen.dart';
 
@@ -9,10 +9,12 @@ class FormTecnScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final productProvider = Provider.of<FormTecnProvider>(context);
-
-    // Escuchar productos en tiempo real
-    productProvider.listenToFormTecn();
+    final formTecnProvider = Provider.of<FormTecnProvider>(context);
+    
+    // Llama a fetchFormTecn cuando la pantalla se carga por primera vez.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      formTecnProvider.fetchFormTecn();
+    });
 
     return Scaffold(
       appBar: AppBar(
@@ -30,25 +32,17 @@ class FormTecnScreen extends StatelessWidget {
         ],
       ),
       body: Consumer<FormTecnProvider>(
-        builder: (context, productProvider, _) {
-          if (productProvider.formTecn.isEmpty) {
-            return const Center(child: Text('No hay productos registrados'));
+        builder: (context, formTecnProvider, _) {
+          if (formTecnProvider.formTecn.isEmpty) {
+            return const Center(child: Text('No hay formularios registrados'));
           }
-
           return ListView.builder(
-            itemCount: FormTecnProvider().formTecn.length,
+            itemCount: formTecnProvider.formTecn.length,
             itemBuilder: (context, index) {
-              final product = FormTecnProvider().formTecn[index];
+              final formTecn = formTecnProvider.formTecn[index];
               return ListTile(
-                leading: SizedBox(
-                  width: 50.0, // Define un tamaño para la imagen
-                  height: 50.0,
-                  child: product.fotoUrl.isNotEmpty
-                      ? Image.network(product.fotoUrl, fit: BoxFit.cover)
-                      : const Icon(Icons.image), // Ícono si no hay imagen
-                ),
-                title: Text(product.nombre),
-                subtitle: Text('Nro. Serie: ${product.numeroSerie}'),
+                title: Text(formTecn.nameForm),
+                subtitle: Text('Nro. Formulario: ${formTecn.numForm}'),
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -58,7 +52,7 @@ class FormTecnScreen extends StatelessWidget {
                         // Navegar a la pantalla para editar el formulario técnico
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => EditFormTecnScreen(product: product),
+                            builder: (context) => EditFormTecnScreen(formTecn: formTecn),
                           ),
                         );
                       },
@@ -66,7 +60,7 @@ class FormTecnScreen extends StatelessWidget {
                     IconButton(
                       icon: const Icon(Icons.delete),
                       onPressed: () {
-                        productProvider.deleteFormTecn(product.id);
+                        formTecnProvider.deleteFormTecn(formTecn.id);
                       },
                     ),
                   ],

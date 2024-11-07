@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:glib_practicas/features/auth/providers/auth.provider.dart';
-import 'package:glib_practicas/features/empresas_sucursales/views/sucursales_screen.dart';
 import 'package:glib_practicas/utils/app_preferences.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +9,7 @@ import 'package:glib_practicas/app_router.dart';
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
-  AppPreferences prefs = AppPreferences();
+  final AppPreferences prefs = AppPreferences();
 
   @override
   Widget build(BuildContext context) {
@@ -106,9 +105,9 @@ class HomePage extends StatelessWidget {
             // Botón para navegar a la página de ABM de formularios técnicos
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, RouteNames.products.name);
+                Navigator.pushNamed(context, RouteNames.formTecn.name);
               },
-              child: const Text('ABM Formulario Tecnicos'),
+              child: const Text('ABM Formulario Tecnicos Reparaciones'),
             ),
           ],
         ),

@@ -8,6 +8,7 @@ import 'package:glib_practicas/features/empresas/views/empresas_screen.dart';
 import 'package:glib_practicas/features/empresas_sucursales/models/sucursal.model.dart';
 import 'package:glib_practicas/features/empresas_sucursales/views/edit_sucursal_screen.dart';
 import 'package:glib_practicas/features/empresas_sucursales/views/sucursales_screen.dart';
+import 'package:glib_practicas/features/form_tecnico/views/form_tecn_screen.dart';
 import 'package:glib_practicas/features/home/views/home.page.dart';
 import 'package:glib_practicas/features/products/views/products_screen.dart';
 import 'package:glib_practicas/features/repair/views/create_repair_page.dart';
@@ -28,7 +29,8 @@ enum RouteNames {
   editSucursal,
   sucursal,
   rubros,
-  ciudad
+  ciudad,
+  formTecn
 }
 
 final Map<String, Widget Function(BuildContext)> appRoutes = {
@@ -40,9 +42,11 @@ final Map<String, Widget Function(BuildContext)> appRoutes = {
   RouteNames.sucursal.name: (context) => const SucursalesScreen(),
   RouteNames.rubros.name: (context) => const RubrosScreen(),
   RouteNames.ciudad.name: (context) => const CiudadesScreen(),
+  RouteNames.formTecn.name: (context) => const FormTecnScreen(),
 
   // Nueva ruta para la pantalla de empresas
   RouteNames.addEmpresa.name: (context) => AddEmpresaPage(),
+
   // Nueva ruta para la lista de empresas
   'empresas': (context) => const EmpresasScreen(),
   // Nueva rutas para la funcionalidad de reparación
